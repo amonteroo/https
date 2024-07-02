@@ -31,7 +31,7 @@ services:
       # Dashboard
       - "traefik.http.routers.traefik.service=api@internal"
       - "traefik.http.routers.traefik.entrypoints=websecure"
-      - "traefik.http.routers.traefik.middlewares=authtraefik"
+      #- "traefik.http.routers.traefik.middlewares=authtraefik"
       - "traefik.http.routers.traefik.tls.certresolver=myresolver"
       - "traefik.http.routers.traefik.rule=Host(`traefik.<domai>>`, `www.traefik.<domai>>`)"
       #- "traefik.http.middlewares.authtraefik.basicauth.users=my_user:<encripted>" # user/password
