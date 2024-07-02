@@ -43,7 +43,7 @@ Traefik, Portainer y Docker Compose son herramientas valiosas para desarrollador
 ## Forma basica de uso:
 
 - Primero debe instalar docker y docker-compose en su server
-- Bajarse el proyecto en la carpeta de despliegue que valla a utilzar
+- Bajarse el proyecto en la carpeta de despliegue que vaya a utilzar
 ###### - Debes remplazar el dominio que utilizaras, el correo para LetsEncrypt y el password para la base de datos mariadb en los archivos docker-compose.yml
 - Crear primero la red externa que utilizara el servicio Traefik
 >   sudo docker network create traefik-net
@@ -63,3 +63,5 @@ Traefik, Portainer y Docker Compose son herramientas valiosas para desarrollador
   	  	  	- tiendapetvip.shop
   	  	  	- loquedesees.online
    	
+
+### Espero, esto le sirva a muchos. Good Luck...
