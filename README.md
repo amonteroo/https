@@ -4,7 +4,8 @@
 
 ### Introducción
 
-En el mundo del desarrollo web, la creación de sitios web seguros y accesibles es fundamental. Ahí es donde entran en juego herramientas como Traefik, Portainer y Docker Compose. Juntas, estas herramientas permiten a los desarrolladores crear y administrar páginas web con HTTPS de manera automatizada y eficiente.
+En el mundo del desarrollo web, la creación de sitios web seguros y accesibles es fundamental. Ahí es donde entran en juego herramientas como Traefik, Portainer y Docker Compose. Juntas, estas herramientas permiten a los desarrolladores crear y administrar páginas web con HTTPS de manera automatizada y eficiente. 
+##### Nota: Se recomeinda que primero aprendan algo de docker basico para poder entender mejor de como funciona los contenedores y su puesta en produccion porque si tienen errores deben saber como encontralos
 
 ### ¿Qué es Traefik?
 
@@ -63,5 +64,25 @@ Traefik, Portainer y Docker Compose son herramientas valiosas para desarrollador
   	  	  	- tiendapetvip.shop
   	  	  	- loquedesees.online
    	
+
+
+
+---
+
+##### Traefik nos permite activar con un par de lineas de comando la option de solicitar user y password:
+
+' #- "traefik.http.routers.traefik.middlewares=authtraefik"
+' #- "traefik.http.middlewares.authtraefik.basicauth.users=my_user:<encripted>" # user/password
+
+Investiga primero como se encripta basiacamente un password MD5.
+Bueno!, asumo que ya saben usar docker pueden ejecutar esto:
+> sudo docker run --rm httpd:2.4-alpine htpasswd -nb <user> <password> | sed -e s/\\$/\\$\\$/g
+> Ejemplo: Supongamos que utilisaremos el usuario Admin y el password: G1tB3st!
+> sudo docker run --rm httpd:2.4-alpine htpasswd -nb Admin G1tB3st! | sed -e s/\\$/\\$\\$/g
+> Admin:$$apr1$$3KInEDKr$$deq8JBwL.OO5eW1pvunvh1
+> Finalmente quedaria asi al reemplazarlo en la line de traefik:
+>   "traefik.http.middlewares.authtraefik.basicauth.users=Admin:$$apr1$$3KInEDKr$$deq8JBwL.OO5eW1pvunvh1"
+Y en el password donde dice <encripted> poner su password encriptado M que lo podran hacer con la pagina anterior
+
 
 ### Espero, esto le sirva a muchos. Good Luck...
