@@ -52,9 +52,14 @@ Traefik, Portainer y Docker Compose son herramientas valiosas para desarrollador
 - Ejecuta con el comando siguiente para crear los servicios de traefik y portainer
 >   sudo docker-compose up -d
 - Verifique que el dominio que haya configurado aparezca en linea [traefik.tu-dominio y portainer.tu-dominio]
+##### Nota: Aveces demora que se reconozca el https por lo que veras una advertencia de seguridad ya que esta redirigido para que entre siempre por https, de momento al inicio puede entrar escogiendo acepto el rizgo y entras por http.
+##### Si aun no te reconoce despues 30 minutos el https, entonces revisar la configuracion del archivo yml y el logs del contenedor.
+
 - Si el punto anterior funciona correctamente entrar a la carpeta de wordpress/website/ y ejecutamos el mismo comando:
 >  sudo docker-compose up -d
+
   ###### Esto creara un servicio de wordpress con el dominio que hayas utilizado [tu-dominio.com] y podras ver la pantalla wordpress la cual solo debes terminar de connfigurar y listo!, ya! tienes tu website con https en minutos.
+
 - Si quieres agregar N cantidad de paginas web?, solo debes crear nuevas carpetas duplicando la primera dentro de wordpress.
   	- Te recomiendo lo hagas de forma ordenada de forma que cada carpeta se llame igual que el dominio de la
   	  pagina que crees. Por ejemplo:
