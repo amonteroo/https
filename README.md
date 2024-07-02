@@ -41,14 +41,16 @@ Traefik, Portainer y Docker Compose son herramientas valiosas para desarrollador
 ---
 
 ## Forma basica de uso:
+
 - Primero debe instalar docker y docker-compose en su server
 - Bajarse el proyecto en la carpeta de despliegue que valla a utilzar
+###### - Debes remplazar el dominio que utilizaras, el correo para LetsEncrypt y el password para la base de datos mariadb:
 - Crear primero la red externa que utilizara el servicio Traefik
 >   sudo docker network create traefik-net
-- Entrar a la carpeta traefik-portainer donde eh intefrago los 2 servicios en un solo docker-compose
+- Entrar a la carpeta traefik-portainer donde eh integrago los 2 servicios en un solo docker-compose
 >   sudo docker-compose up -d
-- Verifique que ya desde el dominio que haya configurado aparezca en linea (traefik.tu-dominio y portainer.tu-dominio)
-- Si el punto anterior esta funciona correctamente entrar a la carpeta de wordpress/website/ y ejecutamos el mismo comando:
+- Verifique que ya desde el dominio que haya configurado aparezca en linea [traefik.tu-dominio y portainer.tu-dominio]
+- Si el punto anterior funciona correctamente entrar a la carpeta de wordpress/website/ y ejecutamos el mismo comando:
 >  sudo docker-compose up -d
   Esto creara un servicio de wordpres con el dominio que hayas utilizado [tu-dominio.com] y podras ver la primera
   pantalla de wordpress la cual solo debes terminar de connfigurar y listo ya tienes website con https en minutot.
