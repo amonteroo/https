@@ -1,0 +1,65 @@
+version: '3.7'
+
+services:
+
+   <tu-domain>_mysql:
+     #image: mysql:8.1.0
+     image: mariadb:latest
+     container_name: <tu-domain>_mysql
+     command: [
+        '--character-set-server=utf8mb4',
+        '--collation-server=utf8mb4_unicode_ci'
+    ]
+     volumes:
+       - /etc/localtime:/etc/localtime:ro
+       - ./db_data:/var/lib/mysql
+     restart: always
+     networks:
+       - traefik-net
+     environment:
+       MYSQL_ROOT_PASSWORD: <tu-passwd> 
+       MYSQL_DATABASE: wordpress
+       MYSQL_USER: wordpress
+       MYSQL_PASSWORD: <tu-passwd> 
+
+   <tu-domain>:
+     #image: img-wordpress:lastest
+     build: .
+     container_name: <tu-domainn> 
+     restart: always
+     networks:
+       - traefik-net
+     environment:
+       WORDPRESS_DB_HOST: <tu-domain>_mysql #:3306
+       WORDPRESS_DB_USER: wordpress
+       WORDPRESS_DB_PASSWORD: <tu-passwd> 
+       WORDPRESS_DB_NAME: wordpress
+     depends_on:
+       - <tu-passwd>_mysql
+     links:
+       - <tu-domain>_mysql
+     volumes:
+       - /etc/localtime:/etc/localtime:ro
+       - ./config/conf.ini:/usr/local/etc/php/conf.d/conf.ini
+       - ./html:/var/www/html
+     labels:
+       traefik.enable: 'true'
+       traefik.docker.network: 'traefik-net'
+       traefik.http.routers.r-<tu-domain>.entryPoints: 'web'
+       traefik.http.routers.r-<tu-domain>.rule: 'Host(`<tu-domain>.com`, `www.<tu-domain>.com`)'
+       traefik.http.routers.r-<tu-domain>.middlewares: 'redir-<tu-domain>'
+       traefik.http.routers.r-<tu-domain>.service: '<tu-domain>'
+       traefik.http.routers.rssl-<tu-domain>.entryPoints: 'websecure'
+       traefik.http.routers.rssl-<tu-domain>.rule: 'Host(`<tu-domain>.com`, `www.<tu-domain>.com`)'
+       traefik.http.routers.rssl-<tu-domain>.service: '<tu-domain>'
+       traefik.http.routers.rssl-<tu-domain>.tls: 'true'
+       traefik.http.routers.rssl-<tu-domain>.tls.certresolver: 'myresolver'
+       traefik.http.middlewares.redir-<tu-domain>.redirectscheme.scheme: 'https'
+       traefik.frontend.redirect.permanent: true
+       traefik.http.services.<tu-domain>.loadbalancer.server.url: 'http://192.168.1.200:8343'
+
+
+networks:
+  traefik-net:
+     external: true
+

@@ -1,0 +1,76 @@
+version: "3.7"
+
+services:
+
+  traefik:
+    image: "traefik:v2.11.0"
+    container_name: "Traefik"
+    restart: always
+    command:
+      - --api
+      - --providers.docker
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      - --certificatesresolvers.myresolver.acme.tlschallenge=true
+      - --certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web
+      - --certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json
+      - --certificatesresolvers.myresolver.acme.email=your_email@xxxx.com
+      #- --certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - traefik-net
+    environment:
+        - TZ=America/Panama
+    volumes:
+      - "./letsencrypt:/letsencrypt"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    labels:
+      # Dashboard
+      - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.routers.traefik.entrypoints=websecure"
+      - "traefik.http.routers.traefik.middlewares=authtraefik"
+      - "traefik.http.routers.traefik.tls.certresolver=myresolver"
+      - "traefik.http.routers.traefik.rule=Host(`traefik..<domai>>`, `traefik..<domai>>`)"
+      #- "traefik.http.middlewares.authtraefik.basicauth.users=my_user:<encripted>" # user/password
+      # global redirect to https
+      - "traefik.http.routers.http-catchall.entrypoints=web"
+      - "traefik.http.routers.http-catchall.rule=hostregexp(`{any:.+}`)"
+      - "traefik.http.routers.http-catchall.middlewares=redirect-to-https"
+      # middleware redirect
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.frontend.redirect.permanent=true"
+
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: "portainer"
+    volumes:
+        - ./data:/data
+        - /var/run/docker.sock:/var/run/docker.sock:ro
+        - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    networks:
+        - traefik-net
+    environment:
+        - TZ=America/Panama
+    labels:
+      # Frontend
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=Host(`portainer.<domai>`, `www.portainer.<domai>`)"
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+      - "traefik.http.services.frontend.loadbalancer.server.port=9000"
+      - "traefik.http.routers.frontend.service=frontend"
+      - "traefik.http.routers.frontend.tls.certresolver=myresolver"
+      # Edge
+      - "traefik.http.routers.edge.rule=Host(`edge.<domai>`)"
+      - "traefik.http.routers.edge.entrypoints=websecure"
+      - "traefik.http.services.edge.loadbalancer.server.port=8000"
+      - "traefik.http.routers.edge.service=edge"
+      - "traefik.http.routers.edge.tls.certresolver=myresolver"
+
+networks:
+  traefik-net:
+     external: true
