@@ -1,16 +1,16 @@
 # HTTPS
 
-Traefik, Portainer y Docker Compose: Un equipo poderoso para crear páginas web con HTTPS
+##Traefik, Portainer y Docker Compose: Un equipo poderoso para crear páginas web con HTTPS
 
-Introducción
+###Introducción
 
 En el mundo del desarrollo web, la creación de sitios web seguros y accesibles es fundamental. Ahí es donde entran en juego herramientas como Traefik, Portainer y Docker Compose. Juntas, estas herramientas permiten a los desarrolladores crear y administrar páginas web con HTTPS de manera automatizada y eficiente.
 
-¿Qué es Traefik?
+###¿Qué es Traefik?
 
 Traefik es un proxy inverso y balanceador de carga moderno que facilita la exposición de servicios en una red. Actúa como intermediario entre los usuarios y los servicios, enrutando el tráfico a los contenedores o aplicaciones correctas. Traefik también puede generar automáticamente certificados TLS/SSL, lo que garantiza que sus sitios web sean seguros y accesibles a través de HTTPS.
 
-¿Qué es Portainer?
+###¿Qué es Portainer?
 
 Portainer es una interfaz de usuario web que facilita la administración de contenedores Docker. Proporciona una interfaz gráfica intuitiva para realizar tareas comunes como iniciar, detener, escalar y depurar contenedores. Portainer también se puede integrar con Traefik para simplificar aún más la administración de sus servicios web.
 
