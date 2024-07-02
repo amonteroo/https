@@ -69,20 +69,23 @@ Traefik, Portainer y Docker Compose son herramientas valiosas para desarrollador
 
 ---
 
-##### Traefik nos permite activar con un par de lineas de comando la option de solicitar user y password:
+##### Traefik nos permite activar con un par de lineas de comando restringir el acceso con user y password:
 
-' #- "traefik.http.routers.traefik.middlewares=authtraefik"
-' #- "traefik.http.middlewares.authtraefik.basicauth.users=my_user:<encripted>" # user/password
+\# - "traefik.http.routers.traefik.middlewares=authtraefik"
+\# - "traefik.http.middlewares.authtraefik.basicauth.users=my_user:<encripted>" # user/password
 
 Investiga primero como se encripta basiacamente un password MD5.
+
 Bueno!, asumo que ya saben usar docker pueden ejecutar esto:
 > sudo docker run --rm httpd:2.4-alpine htpasswd -nb <user> <password> | sed -e s/\\$/\\$\\$/g
-> Ejemplo: Supongamos que utilisaremos el usuario Admin y el password: G1tB3st!
+
+Ejemplo: Supongamos que utilisaremos el usuario Admin y el password: G1tB3st!
 > sudo docker run --rm httpd:2.4-alpine htpasswd -nb Admin G1tB3st! | sed -e s/\\$/\\$\\$/g
-> Admin:$$apr1$$3KInEDKr$$deq8JBwL.OO5eW1pvunvh1
-> Finalmente quedaria asi al reemplazarlo en la line de traefik:
+
+Salida: Admin:$$apr1$$3KInEDKr$$deq8JBwL.OO5eW1pvunvh1
+
+Finalmente quedaria asi al reemplazarlo en la line de traefik:
 >   "traefik.http.middlewares.authtraefik.basicauth.users=Admin:$$apr1$$3KInEDKr$$deq8JBwL.OO5eW1pvunvh1"
-Y en el password donde dice <encripted> poner su password encriptado M que lo podran hacer con la pagina anterior
 
 
 ### Espero, esto le sirva a muchos. Good Luck...
