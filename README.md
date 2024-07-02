@@ -37,4 +37,27 @@ y administración de certificados SSL.
 
 Traefik, Portainer y Docker Compose son herramientas valiosas para desarrolladores web que buscan crear y administrar páginas web con HTTPS de manera eficiente y segura. Al combinar estas herramientas, puede simplificar su flujo de trabajo, mejorar la seguridad de sus sitios web y escalar fácilmente sus aplicaciones para satisfacer las demandas cambiantes.
 
+
+---
+
+## Forma basic de uso:
+- Primero debe instalar docker y docker-compose en su server
+- Bajarse el proyecto en la carpeta de despliegue que valla a utilzar
+- Crear primero la red externa que utilizara el servicio Traefik
 	sudo docker network create traefik-net
+- Entrar a la carpeta traefik-portainer donde eh intefrago los 2 servicios en un solo docker-compose
+  	sudo docker-compose up -d
+- Verifique que ya desde el dominio que haya configurado aparezca en linea (traefik.tu-dominio y portainer.tu-dominio)
+- Si el punto anterior esta funciona correctamente entrar a la carpeta de wordpress/website/ y ejecutamos el mismo comando:
+  	sudo docker-compose up -d
+  Esto creara un servicio de wordpres con el dominio que hayas utilizado [tu-dominio.com] y podras ver la primera
+  pantalla de wordpress la cual solo debes terminar de connfigurar y listo ya tienes website con https en minutot.
+- Si quieres agragar N cantidad de paginas web solo debes crear nuevas carpetas dentro de wordpress.
+  	- Te recomiendo lo hagas de forma ordenada de forma que cada carpeta se llame igual que el dominio de la
+  	  pagina que crees. Por ejemplo:
+  	  	* wordpress
+  	  	  	- codigopage.com
+  	  	  	- micocinadelly.net
+  	  	  	- tiendapetvip.shop
+  	  	  	- loquedesees.online
+   	
