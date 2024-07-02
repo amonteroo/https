@@ -69,11 +69,11 @@ Traefik, Portainer y Docker Compose son herramientas valiosas para desarrollador
 
 ---
 
-##### Traefik nos permite activar con un par de lineas de comando restringir el acceso con user y password:
+## Traefik nos permite activar con un par de lineas de comando restringir el acceso con user y password:
 
 ##### Primero descomentar las siguientes lineas
  - "traefik.http.routers.traefik.middlewares=authtraefik"
- - "traefik.http.middlewares.authtraefik.basicauth.users=my_user:<encripted>" # user/password
+ - "traefik.http.middlewares.authtraefik.basicauth.users=my_user:my_passwd"
 
 Investiga primero como se encripta basiacamente un password MD5.
 
