@@ -69,7 +69,7 @@ Traefik, Portainer y Docker Compose son herramientas valiosas para desarrollador
 
 ---
 
-## Traefik nos permite activar con un par de lineas de comando restringir el acceso con user y password:
+## Traefik nos permite restringir el acceso con user y password:
 
 ##### Primero descomentar las siguientes lineas
  - "traefik.http.routers.traefik.middlewares=authtraefik"
@@ -87,6 +87,11 @@ Ejemplo: Supongamos que utilisaremos el usuario Admin y el password: G1tB3st!
 
 Finalmente quedaria asi al reemplazarlo en la line de traefik:
 >   "traefik.http.middlewares.authtraefik.basicauth.users=Admin:$$apr1$$3KInEDKr$$deq8JBwL.OO5eW1pvunvh1"
+
+Al entrar al tablero de Traefik nos pedira el user y password para poder utilizarlo. De esta forma
+la pagina tendra una capa de seguridad basica para que no cualquier pueda entrar.
+
+El el caso de Portainer el mismo tablero web trae intedrado este capa de acceso user/passwd.
 
 
 ### Espero, esto le sirva a muchos. Good Luck...
