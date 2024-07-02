@@ -53,7 +53,7 @@ Traefik, Portainer y Docker Compose son herramientas valiosas para desarrollador
 - Verifique que el dominio que haya configurado aparezca en linea [traefik.tu-dominio y portainer.tu-dominio]
 - Si el punto anterior funciona correctamente entrar a la carpeta de wordpress/website/ y ejecutamos el mismo comando:
 >  sudo docker-compose up -d
-  Esto creara un servicio de wordpress con el dominio que hayas utilizado [tu-dominio.com] y podras ver la primera
+  ###### Esto creara un servicio de wordpress con el dominio que hayas utilizado [tu-dominio.com] y podras ver la primera
   pantalla de wordpress la cual solo debes terminar de connfigurar y listo ya tienes website con https en minutos.
 - Si quieres agregar N cantidad de paginas web?, solo debes crear nuevas carpetas duplicando la primera dentro de wordpress.
   	- Te recomiendo lo hagas de forma ordenada de forma que cada carpeta se llame igual que el dominio de la
