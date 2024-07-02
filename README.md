@@ -96,7 +96,7 @@ Finalmente quedaria asi al reemplazarlo en la line de traefik:
 Al entrar al tablero de Traefik nos pedira el user y password para poder utilizarlo. De esta forma
 la pagina tendra una capa de seguridad basica para que no cualquier pueda entrar.
 
-El el caso de Portainer el mismo tablero web trae intedrado este capa de acceso user/passwd.
+El el caso de Portainer el mismo tablero web trae integrado este capa de acceso user/passwd.
 
 
 ### Espero, esto le sirva a muchos. Good Luck...
