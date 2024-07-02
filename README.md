@@ -24,10 +24,14 @@ Cuando se combinan, Traefik, Portainer y Docker Compose forman una poderosa plat
 
 ### Beneficios de usar Traefik, Portainer y Docker Compose
 
-    - Automatización: Traefik puede generar automáticamente certificados SSL y enrutar el tráfico a sus aplicaciones, lo que reduce la necesidad de configuración manual.
-    - Simplicidad: Portainer proporciona una interfaz gráfica intuitiva para administrar sus contenedores, lo que facilita el uso de Docker incluso para principiantes.
-    - Escalabilidad: Docker Compose permite escalar fácilmente sus aplicaciones agregando o eliminando contenedores según sea necesario.
-    - Seguridad: Traefik garantiza que sus sitios web sean seguros y accesibles a través de HTTPS mediante la generación y administración de certificados SSL.
+    - Automatización: Traefik puede generar automáticamente certificados SSL y enrutar el tráfico a sus aplicaciones, 
+      lo que reduce la necesidad de configuración manual.
+    - Simplicidad: Portainer proporciona una interfaz gráfica intuitiva para administrar sus contenedores, lo que 
+      facilita el uso de Docker incluso para principiantes.
+    - Escalabilidad: Docker Compose permite escalar fácilmente sus aplicaciones agregando o eliminando contenedores 
+      según sea necesario.
+    - Seguridad: Traefik garantiza que sus sitios web sean seguros y accesibles a través de HTTPS mediante la generación
+      y administración de certificados SSL.
 
 ## Conclusión
 
