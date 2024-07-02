@@ -40,11 +40,11 @@ Traefik, Portainer y Docker Compose son herramientas valiosas para desarrollador
 
 ---
 
-## Forma basic de uso:
+## Forma basica de uso:
 - Primero debe instalar docker y docker-compose en su server
 - Bajarse el proyecto en la carpeta de despliegue que valla a utilzar
 - Crear primero la red externa que utilizara el servicio Traefik
-	sudo docker network create traefik-net
+	'sudo docker network create traefik-net
 - Entrar a la carpeta traefik-portainer donde eh intefrago los 2 servicios en un solo docker-compose
   	sudo docker-compose up -d
 - Verifique que ya desde el dominio que haya configurado aparezca en linea (traefik.tu-dominio y portainer.tu-dominio)
